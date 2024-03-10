@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Todo>
+<div class="container p-3 m-3">
+    <ul class="list-group">
+        @foreach (var todo in Model)
+        {
+            <li class="list-group-item position-relative p-3 m-1 border border-1">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="m-0 p-0 @(todo.Completed ? "text-decoration-line-through" : "")">
+                            @todo.Description
+                        </p>
+                    </div>
+                    <div>
+                        <p class="m-0 p-0">
+                            <span class="badge bg-primary">
+                                <small>
+                                    <i>
+                                        @todo.CreatedAt
+                                    </i>
+                                </small>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

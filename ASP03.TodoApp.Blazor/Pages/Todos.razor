@@ -1,0 +1,70 @@
+﻿@page "/todos"
+@using ASP03.TodoApp.Blazor.Models
+
+<div class="container p-3 m-3">
+    <ul class="list-group">
+        @foreach (var todo in _todos)
+        {
+            <li class="list-group-item position-relative p-3 m-1 border border-1">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <p class="m-0 p-0 @(todo.Completed ? "text-decoration-line-through" : "")">
+                            @todo.Description
+                        </p>
+                    </div>
+                    <div>
+                        <p class="m-0 p-0">
+                            <span class="badge bg-primary">
+                                <small>
+                                    <i>
+                                        @todo.CreatedAt
+                                    </i>
+                                </small>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+    private List<Todo> _todos = [];
+
+    protected override void OnInitialized()
+    {
+        _todos = new List<Todo>()
+            {
+                 new Todo {
+                     Id = 1,
+                     Description= "Finish coding the login page for the app by end of day.",
+                     CreatedAt = new DateTime (2024, 02, 28, 14, 38, 0),
+                     Completed = false
+                 },
+                 new Todo
+                 {
+                     Id = 2,
+                     Description= "Schedule a meeting with the design team to discuss UI improvements",
+                     CreatedAt = new DateTime (2024, 01, 18, 18, 41, 0),
+                     Completed = true
+                 },
+                 new Todo
+                 {
+                     Id = 3,
+                     Description= "Review the latest pull requests from the development " +
+                     "team and provide feedback",
+                     CreatedAt = new DateTime (2024, 03, 06, 09, 12, 0),
+                     Completed = false
+                 },
+                 new Todo
+                 {
+                     Id = 4,
+                     Description= "Prepare presentation slides for tomorrow's project " +
+                                     "status meeting with stakeholders",
+                     CreatedAt = new DateTime (2024, 02, 04, 14, 57, 0),
+                     Completed = false
+                 }
+            };
+    }  
+}
